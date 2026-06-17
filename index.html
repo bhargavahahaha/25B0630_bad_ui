@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🔋 BatteryBuddy™ (Definitely Not Stressful)</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="terminal-chrome">
+      <div class="terminal-titlebar">
+        <span class="blink-led"></span>
+        <span class="terminal-titlebar-text"
+          >POWER_DIAGNOSTIC.EXE — v1.0 (1987 Edition)</span
+        >
+      </div>
+
+      <div class="terminal-screen">
+        <h1 class="terminal-title">⚡ BATTERY STATUS INQUIRY SYSTEM ⚡</h1>
+        <p class="terminal-subtitle">
+          &gt; Checking your battery requires Level 3 Clearance.
+        </p>
+
+        <!-- Step 1: Consent -->
+        <div class="step" id="step1">
+          <div class="step-label">PHASE 1 OF 3 — STATE YOUR INTENT</div>
+          <p class="step-desc">
+            &gt; Do you formally request to view your battery percentage?
+          </p>
+          <div class="btn-row">
+            <button class="btn-yes" onclick="nextStep(1)">
+              YES, I REQUEST THIS
+            </button>
+            <button class="btn-no" onclick="cancelFlow()">
+              NO, ABORT MISSION
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 2: Security check -->
+        <div class="step hidden" id="step2">
+          <div class="step-label">PHASE 2 OF 3 — PROVE YOUR WORTHINESS</div>
+          <p class="step-desc">
+            &gt; Click the button below
+            <strong>5 times within 3 seconds</strong> to prove you deserve this
+            information.
+          </p>
+          <p class="step-desc">
+            Clicks registered: <span id="clickCount">0</span> / 5
+          </p>
+          <div class="btn-row">
+            <button class="btn-yes" id="securityBtn" onclick="registerClick()">
+              ⚡ CLICK ME FRANTICALLY ⚡
+            </button>
+            <button class="btn-no" onclick="cancelFlow()">Give up</button>
+          </div>
+          <p class="fine-print" id="securityMsg"></p>
+        </div>
+
+        <!-- Step 3: Reveal + controls -->
+        <div class="step hidden" id="step3">
+          <div class="step-label">PHASE 3 OF 3 — CLEARANCE GRANTED</div>
+          <p class="step-desc">
+            &gt; You may now request a battery reading. Note: readings are not
+            live and must be manually requested.
+          </p>
+
+          <button class="btn-yes" onclick="refreshReading()">
+            🔄 REQUEST BATTERY READING
+          </button>
+          <p class="fine-print" id="scanStatus"></p>
+
+          <div class="battery-display">
+            <div class="battery-icon-wrap">
+              <div class="battery-shell">
+                <div class="battery-fill" id="batteryFill"></div>
+              </div>
+              <div class="battery-nub"></div>
+            </div>
+            <div class="battery-percent" id="batteryPercent">??%</div>
+          </div>
+
+          <p class="commentary" id="commentary">
+            &gt; No reading taken yet. Existential uncertainty persists.
+          </p>
+
+          <div class="control-row">
+            <button class="btn-no" onclick="drainBattery()">
+              🔻 Simulate Usage (Drain)
+            </button>
+            <button class="btn-yes" onclick="chargeBattery()">
+              🔌 Plug In (Charge +1%)
+            </button>
+            <button
+              class="btn-maybe"
+              id="optimizeBtn"
+              onclick="optimizeBattery()"
+            >
+              ✨ Optimize Battery Health
+            </button>
+            <button class="btn-no" onclick="restartFlow()">
+              🔁 Forget Everything (Reset)
+            </button>
+          </div>
+
+          <p class="fine-print">
+            True internal charge: <span id="actualDebug">--</span>% (hidden from
+            normal users, but shown to you because we respect your time.
+            Mostly.)
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="watermark">
+      Powered by Anxiety™ — BatteryBuddy is not responsible for feelings of
+      dread.
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
